@@ -1,7 +1,12 @@
-import datetime
-import pandas as pd
-
-from backtesting import Backtest
-from backtesting import Strategy
-from backtesting.lib import crossover
+from backtesting import Backtest, Strategy
 from backtesting.test import GOOG
+import talib as ta
+
+print(GOOG)
+
+class RsiOscillator(Strategy):
+
+    def init(self):
+        self.rsi = self.I(ta.RSI, self.data.Close, 14)
+
+    def next(self):
